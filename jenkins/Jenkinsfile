@@ -1,8 +1,8 @@
 pipeline {
   agent any
   parameters {
-    booleanparam{defaultValue: flase , description: "value of boolean parameter" , name:"myBoolean"}
-    string{defaultValue: TEXT , description: "The required value to be selected" , name:"env"}
+    booleanparam{defaultValue: false, description: "value of boolean parameter", name:"myBoolean"}
+    string{defaultValue: "Test value", description: "The required value to be selected", name:"env"}
 
     
   }
