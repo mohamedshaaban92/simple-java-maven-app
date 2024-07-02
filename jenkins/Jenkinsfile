@@ -1,10 +1,10 @@
 pipeline {
   agent any
   parameters {
-    booleanparam {default: flase , description: "value of boolean parameter" , name:myBoolean
-    string {default:TEXT , description: "The required value to be selected" , name:env}
+    booleanparam{default: flase , description: "value of boolean parameter" , name:"myBoolean"}
+    string{default:TEXT , description: "The required value to be selected" , name:"env"}
 
-    }
+    
   }
   stages {
     stage ("Echo parameter value"){
