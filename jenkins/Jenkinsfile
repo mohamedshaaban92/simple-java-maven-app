@@ -12,6 +12,12 @@ pipeline {
                sh "cat /etc/os-release"
             }
         }
+
+        stage('Display Ip address') {
+            steps {
+               sh " hostname -I"
+            }
+        }
     }
     
     post{
