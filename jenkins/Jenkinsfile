@@ -12,8 +12,8 @@ pipeline {
                sh "cat /etc/os-release"
             }
         }
-        
     }
+    
     post{
             success{
                 echo "Job succeeded"
