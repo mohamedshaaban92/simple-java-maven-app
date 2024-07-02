@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage ("Echo parameter value"){
       steps {
-          echo "The selected value is ${params.myBoolean}"
+          echo "The selected value is ${params.BOOLEAN}"
       } 
          }
       stage ("select the required env"){
