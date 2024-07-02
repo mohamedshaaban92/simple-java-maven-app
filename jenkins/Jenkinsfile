@@ -1,7 +1,7 @@
 pipeline {
   agent any
   parameters {
-    booleanParam(defaultValue: true, description: '', name: 'BOOLEAN')
+    booleanParam(defaultValue: false, description: '', name: 'BOOLEAN')
     string(defaultValue: "test value", description: "The required value to be selected", name: "env")
   }
   stages {
