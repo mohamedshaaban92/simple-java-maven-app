@@ -1,31 +1,57 @@
 pipeline {
-    agent any
-    stages {
-        stage('display hostname') {
-            steps {
-                sh "hostname"
-            }
-        }
+  agent any
+  parameters {
+    booleanparam {default: flase , description: "value of boolean parameter" , name:myBoolean
+    string {default:TEXT , description: "The required value to be selected" , name:env}
 
-        stage('display OS version') {
-            steps {
-               sh "cat /etc/os-release"
-            }
-        }
-
-        stage('Display Ip address') {
-            steps {
-               sh " hostname -I"
-            }
-        }
     }
-    
-    post{
-            success{
-                echo "Job succeeded"
-            }
-            failure{
-                echo "Jib failed"
-            }
+  }
+  stages {
+    stage ("Echo parameter value"){
+      steps {
+          echo "The selected value is ${params.myBoolean}"
+      } 
+         }
+      stage ("select the required env"){
+         steps {
+           echo "The selected value is ${params.env}"
+      } 
+         }
+
+    stage ("Display hostname"){
+      steps {
+          sh "hostname"
+      } 
+         }
+    stage ("Clean up") {
+      steps {
+            deleteDir()
         }
-}
+      }
+      stage ("Clone Repo"){
+        steps{
+            sh "git clone https://github.com/jenkins-docs/simple-java-maven-app.git"
+        }
+      }
+      stage ("Build"){
+        steps{
+            dir ("simple-java-maven-app")
+            sh "mvn clean install"
+        }
+      }
+      stage ("Test"){
+        steps{
+            dir ("simple-java-maven-app")
+            sh "mvn test" 
+        }
+      }
+    }
+    post {
+        success {
+          echo "Job successed"
+        }
+        failure {
+          echo "Job failed"
+        }
+      }
+  }
