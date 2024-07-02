@@ -3,6 +3,7 @@ pipeline {
   parameters {
     booleanParam(defaultValue: false, description: '', name: 'Selectvalue')
     string(defaultValue: "test value", description: "The required value to be selected", name: "env")
+    choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: '') 
   }
   stages {
     stage ("Echo parameter value"){
