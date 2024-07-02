@@ -1,19 +1,26 @@
 pipeline {
   agent any
   parameters {
-    booleanParam(defaultValue: false, description: '', name: 'Selectvalue')
-    string(defaultValue: "test value", description: "The required value to be selected", name: "env")
-    choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: '') 
+    booleanParam(defaultValue: false, description: 'Do you agree with the policies ?', name: 'acceptPolicies')
+    string(defaultValue: "test value", description: "The required value to be selected", name: "vmname")
+    choice(name: 'Environment', choices: ['PROD', 'STG', 'DEV'], description: 'select the required environment') 
   }
   stages {
-    stage ("Echo parameter value"){
+    stage ("select required environemt"){
       steps {
-          echo "The selected value is ${params.Selectvalue}"
+          echo "The selected environment is ${params.Environment}"
       } 
          }
-      stage ("select the required env"){
+
+      stage ("Enter the required vm name "){
          steps {
-           echo "The selected value is ${params.env}"
+           echo "The selected value is ${params.vmname}"
+      } 
+         }
+         
+      stage ("Echo parameter value"){
+        steps {
+          echo "Click accept policies  ${params.acceptPolicies}"
       } 
          }
 
